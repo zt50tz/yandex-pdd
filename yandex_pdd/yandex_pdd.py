@@ -20,7 +20,7 @@ def inspect_args_func(frame):
     :return: dict
     """
     args, _, _, values = inspect.getargvalues(frame)
-    return {key: values[key] for key in args}
+    return {key: values[key] for key in args if key != 'self'}
 
 
 def response_full_d(key):
@@ -102,7 +102,7 @@ class YandexPdd(object):
         if method == 'post':
             kwargs = {'data': data}
         else:
-            kwargs = {'args': data}
+            kwargs = {'params': data}
         kwargs.update({
             'headers': {'PddToken': self._token}
         })
