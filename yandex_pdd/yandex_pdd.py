@@ -124,6 +124,31 @@ class YandexPdd(object):
     # DOMAIN ACTIONS
     # -----------------------------------------------------------------------------------------------------------------
 
+    def domain_list(self, page=1, on_page=30):
+        """
+        Domain list
+        :param page: Page
+        :param on_page: Items on page
+        :return: dict
+        """
+        return self._request('domain/domains', inspect_args_func(inspect.currentframe()), method='get')
+
+    def domain_list_all(self):
+        """
+        Full list of domains
+        :return: list
+        """
+        page = 1
+        on_page = 100
+        ret = []
+        while True:
+            r = self.domain_list(page=page, on_page=on_page)
+            ret += r['domains']
+            if len(ret) >= r['total']:
+                break
+            page += 1
+        return ret
+
     def domain_register(self):
         """
         Register domain
@@ -202,6 +227,7 @@ class YandexPdd(object):
             ret += r['accounts']
             if page > pages:
                 break
+            page += 1
         return ret
 
     @response_full_d(True)
