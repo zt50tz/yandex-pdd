@@ -26,6 +26,8 @@ All methods from page https://tech.yandex.ru/pdd/doc/. Naming of methods is gett
 - and so on
 
 ##### Domain
+- ```domain_list``` - Domain list page
+- ```domain_list_all``` - Domain list all
 - ```domain_register``` — Register domain
 - ```domain_registration_status``` - domain_registration_status
 - ```domain_details``` - Domain details
